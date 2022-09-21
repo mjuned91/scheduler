@@ -18,7 +18,7 @@ export default function InterviewerList(props) {
               selected={props.value===interviewer.id}
             />
           );
-        })};
+        })}
       </ul>
     </section>
   );
