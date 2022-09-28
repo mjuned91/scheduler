@@ -16,3 +16,9 @@ export function getInterview(state, interview) {
   console.log(interview);
   return result;
 };
+
+export function getInterviewersForDay(state, day) {
+  const selectedDay = state.days.length ? state.days.find(item => item.name === day) : undefined;
+  const interviewers = selectedDay ? selectedDay.interviewers : [];
+  return interviewers.map(interviewer => state.interviewers[interviewer]);
+};
