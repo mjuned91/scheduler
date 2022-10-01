@@ -58,21 +58,24 @@ export default function Application(props) {
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   function bookInterview(id, interview) {
-    console.log("This is working.")
-    console.log("id and interview:", id, interview)
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    }
+    return axios.put(`/api/appointments/${id}`, {interview:{...interview}})
+    .then(res =>  {
+      // Make a copy of state data for the appointment with that specific id and the interview sublevel data
+      const appointment = {
+        ...state.appointments[id],
+        interview: { ...interview }
+      };
 
-    const appointments = {
-       ...state.appointments,
-      [id]: appointment
-    }
+      // Make a copy of the state data for all appointments and insert the appointment for that single id (above)
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      };
 
-    setState({
-      ...state, 
-      appointments    
+      setState({
+        ...state, 
+        appointments: appointments      
+      })
     })
   }
 
@@ -88,9 +91,6 @@ export default function Application(props) {
       axios.get(appURL),
       axios.get(intURL)
     ]).then((all) => {
-      console.log(all[0]);
-      console.log(all[1]);
-      console.log(all[2]);
       setState(prev => ({
         ...prev, 
         days: all[0].data, 
