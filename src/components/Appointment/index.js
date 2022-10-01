@@ -2,6 +2,7 @@ import React from "react";
 
 import "components/Appointment/styles.scss"
 
+import bookInterview from "components/Application"
 import useVisualMode from "hooks/useVisualMode";
 
 import Header from "components/Appointment/Header.js";
@@ -18,6 +19,17 @@ export default function Appointment(props) {
       props.interview ? SHOW : EMPTY
     );
 
+  function save(name, interviewer) {
+    console.log("name and interviewer:", name, interviewer)
+    const interview = {
+      student: name,
+      interviewer
+    }
+
+    props.bookInterview(props.id, interview);
+    transition(SHOW);
+  };
+
   return (
     <article className="appointment">
       <Header time={props.time} />
@@ -28,7 +40,7 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer}
         />
       )}
-      {mode === CREATE && <Form interviewers={props.interviewers} onCancel={() => back()} />}
+      {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={() => back()} />}
     </article>
   );
 };
