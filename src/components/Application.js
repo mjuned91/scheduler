@@ -7,45 +7,6 @@ import DayList from "components/DayList";
 import Appointment from "components/Appointment"
 import  { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
-// const appointments = {
-//   "1": {
-//     id: 1,
-//     time: "12pm",
-//   },
-//   "2": {
-//     id: 2,
-//     time: "1pm",
-//     interview: {
-//       student: "Lydia Miller-Jones",
-//       interviewer:{
-//         id: 3,
-//         name: "Sylvia Palmer",
-//         avatar: "https://i.imgur.com/LpaY82x.png",
-//       }
-//     }
-//   },
-//   "3": {
-//     id: 3,
-//     time: "2pm",
-//   },
-//   "4": {
-//     id: 4,
-//     time: "3pm",
-//     interview: {
-//       student: "Archie Andrews",
-//       interviewer:{
-//         id: 4,
-//         name: "Cohana Roy",
-//         avatar: "https://i.imgur.com/FK8V841.jpg",
-//       }
-//     }
-//   },
-//   "5": {
-//     id: 5,
-//     time: "4pm",
-//   }
-// };
-
 export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
@@ -58,15 +19,33 @@ export default function Application(props) {
   const dailyInterviewers = getInterviewersForDay(state, state.day);
 
   function bookInterview(id, interview) {
-    return axios.put(`/api/appointments/${id}`, {interview:{...interview}})
-    .then(res =>  {
-      // Make a copy of state data for the appointment with that specific id and the interview sublevel data
+    return axios.put(`/api/appointments/${id}`, {interview: {...interview}})
+    .then(() =>  {
       const appointment = {
         ...state.appointments[id],
         interview: { ...interview }
       };
 
-      // Make a copy of the state data for all appointments and insert the appointment for that single id (above)
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      };
+
+      setState({
+        ...state, 
+        appointments: appointments      
+      })
+    })
+  }
+
+  function cancelInterview(id, interview) {
+    return axios.delete(`/api/appointments/${id}`)
+    .then(() =>  {
+      const appointment = {
+        ...state.appointments[id],
+        interview: null
+      };
+
       const appointments = {
         ...state.appointments,
         [id]: appointment
@@ -133,6 +112,7 @@ export default function Application(props) {
             interview={interview}
             interviewers={dailyInterviewers}
             bookInterview={bookInterview}
+            cancelInterview={cancelInterview}
           />
           )
         })}
