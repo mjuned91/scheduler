@@ -12,11 +12,11 @@ export default function useApplicationData(props) {
 
   const setDay = day => setState({ ...state, day });
 
-  const dayURL = `http://localhost:8001/api/days`;
-  const appURL = `http://localhost:8001/api/appointments`;
-  const intURL = `http://localhost:8001/api/interviewers`;
-
   useEffect(() => {
+    const dayURL = `/api/days`;
+    const appURL = `/api/appointments`;
+    const intURL = `/api/interviewers`;
+    
     Promise.all([
       axios.get(dayURL),
       axios.get(appURL),
@@ -29,7 +29,7 @@ export default function useApplicationData(props) {
         interviewers: all[2].data
       }));
     });
-  }, [appURL, dayURL, intURL]);
+  }, []);
 
     // Function to calculate spots remaining for a day
     function spotsRemaining (state) {
