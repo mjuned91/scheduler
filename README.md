@@ -2,7 +2,7 @@
 
 ## Interview Scheduler Screenshots
 
-!["Home Page"] (https://github.com/mjuned91/scheduler/blob/master/docs/1_home-page.png?raw=true)
+!["Home Page"](https://github.com/mjuned91/scheduler/blob/master/docs/1_home-page.png?raw=true)
 
 ## Setup
 
