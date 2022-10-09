@@ -2,9 +2,11 @@
 
 ## Interview Scheduler Screenshots
 
+
 The Interview Scheduler is a React app which was developed during the Lighthouse Labs Web Development Flex Program.
 
 This app allows its user to add, edit, and delete appointments and also displays the number of available spots on each day of the week.
+
 
 ### Home Page
 !["Home page"](https://github.com/mjuned91/scheduler/blob/master/docs/1_home-page.png?raw=true)
