@@ -1,5 +1,9 @@
 # Interview Scheduler
 
+## Interview Scheduler Screenshots
+
+!["Home Page"] (https://github.com/mjuned91/scheduler/blob/master/docs/1_home-page.png?raw=true)
+
 ## Setup
 
 Install dependencies with `npm install`.
