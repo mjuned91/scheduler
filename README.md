@@ -28,7 +28,7 @@ This app allows its user to add, edit, and delete appointments and also displays
 
 !["Delete appointment 3"](https://github.com/mjuned91/scheduler/blob/master/docs/8_deleting.png?raw=true)
 
-### Edit Appointment & Errors
+### Edit Appointment & Error Messages
 !["Edit appointment & errors 1"](https://github.com/mjuned91/scheduler/blob/master/docs/10_error-add-name.png?raw=true)
 
 !["Edit appointment & errors 2"](https://github.com/mjuned91/scheduler/blob/master/docs/11_error-add-interviewer.png?raw=true)
